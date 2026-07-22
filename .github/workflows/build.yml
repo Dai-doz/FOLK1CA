@@ -82,23 +82,22 @@ jobs:
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/make_rom.sh
               
-           - name: "Pull Finished ROM"
-          run: |
+      - name: "Pull Finished ROM"
+        run: |
             mkdir out
             echo "Checking before copying to out directory"
             ls UN1CA/out
             cp UN1CA/out/*.zip out
 
-            - name: "Upload flasheable zip to Github Artifact"
-           uses: actions/upload-artifact@v7
-          with:
+      - name: "Upload flasheable zip to Github Artifact"
+        uses: actions/upload-artifact@v7
+        with:
             path: out/UN1CA_*${{ github.event.inputs.device }}*.zip
             archive: false
             continue-on-error: true
 
-          - name: "Upload target_files.zip to Github Artifact"
-          uses: actions/upload-artifact@v7
-          with:
+      - name: "Upload target_files.zip to Github Artifact"
+        uses: actions/upload-artifact@v7
+        with:
             path: out/${{ github.event.inputs.device }}_*-target_files.zip
             archive: false
-     
