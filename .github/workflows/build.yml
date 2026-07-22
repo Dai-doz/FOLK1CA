@@ -86,18 +86,17 @@ jobs:
         run: |
             mkdir -p out
             echo "Checking before copying to out directory"
-            ls UN1CA/out
-            cp UN1CA/out/*.zip out
+            ls -la out/
 
       - name: "Upload flasheable zip"
         uses: actions/upload-artifact@v7
         with:
-            path: out/UN1CA_*${{ github.event.inputs.device }}*.zip
+            path: out/*.zip
             archive: false
             continue-on-error: true
 
-      - name: "Upload target files"
+      - name: "Upload target filest"
         uses: actions/upload-artifact@v7
         with:
-            path: out/${{ github.event.inputs.device }}_*-target_files.zip
+            path: out/*target_files.zip
             archive: false
