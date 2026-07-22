@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [a52sxq, a53x, a73xq, b0q, g0q, m52xq, o1s, p3s, r0q, r9s, t2s]
+        target: [a22]
 
     steps:
       - name: Checkout repo
@@ -81,3 +81,23 @@ jobs:
         run: |
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/make_rom.sh
+      
+      - name: "Pull Finished ROM"
+        run: |
+            mkdir out
+            echo "Checking before copying to out directory"
+            ls UN1CA/out
+            cp UN1CA/out/*.zip out
+
+      - name: "Upload flasheable zip to Github Artifact"
+        uses: actions/upload-artifact@v7
+        with:
+            path: out/UN1CA_*${{ github.event.inputs.device }}*.zip
+            archive: false
+            continue-on-error: true
+
+      - name: "Upload target_files.zip to Github Artifact"
+        uses: actions/upload-artifact@v7
+        with:
+            path: out/${{ github.event.inputs.device }}_*-target_files.zip
+            archive: false
