@@ -88,14 +88,14 @@ jobs:
             echo "Checking before copying to out directory"
             ls -la out/
 
-      - name: "Upload flasheable zip"
+      - name: "Upload flashable zip"
         uses: actions/upload-artifact@v7
         with:
             path: out/*.zip
             archive: false
             continue-on-error: true
 
-      - name: "Upload target filest"
+      - name: "Upload target file"
         uses: actions/upload-artifact@v7
         with:
             path: out/*target_files.zip
