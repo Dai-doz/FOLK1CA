@@ -1,4 +1,4 @@
-if [[ ! "$TARGET_CODENAME" == "a14"  ]]; then    
+if [[ ! "$TARGET_CODENAME" == "a51"  ]]; then    
     LOG_STEP_IN "- Adding stock SoundBooster libs"
     ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "system/lib/lib_SoundBooster_ver1000.so" 0 0 644 "u:object_r:system_lib_file:s0"
     DELETE_FROM_WORK_DIR "system" "system/lib/lib_SoundBooster_ver1100.so"
